@@ -1,0 +1,66 @@
+{
+  "name": "@brian-triplett/jsii-issue-1317",
+  "version": "0.0.1",
+  "description": "Example repo for repro of aws/jsii issue #1137",
+  "author": "Brian Triplett",
+  "license": "UNLICENSED",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brian-triplett/jsii-issue-1317"
+  },
+  "scripts": {
+    "build": "jsii --fail-on-warnings",
+    "build:watch": "jsii -w",
+    "package": "jsii-pacmak  --verbose",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test && npm run package",
+    "postversion": "git push && git push --tags && npm publish",
+    "pretest": "npm run build",
+    "version": "npm run format && git add -A lib",
+    "watch": "tsc -w"
+  },
+  "jsii": {
+    "outdir": "dist",
+    "targets": {
+      "python": {
+        "distName": "brian-triplett.jsii-issue-1137",
+        "module": "brian_triplett.jsii_issue_1137"
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.3",
+    "@types/node": "13.7.6",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "jest": "^24.9.0",
+    "jsii": "*",
+    "jsii-pacmak": "*",
+    "majestic": "^1.6.2",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.3.0",
+    "ts-node": "^8.6.2",
+    "typescript": "~3.8.2"
+  },
+  "dependencies": {
+    "@aws-cdk/core": "1.28.0",
+    "@aws-cdk/aws-s3": "1.28.0",
+    "@aws-cdk/cx-api": "1.28.0"
+  },
+  "peerDependencies": {
+    "@aws-cdk/core": "1.28.0",
+    "@aws-cdk/aws-s3": "1.28.0",
+    "@aws-cdk/cx-api": "1.28.0"
+  }
+}
